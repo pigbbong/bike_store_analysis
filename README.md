@@ -11,7 +11,7 @@
 - `3. DDL.sql` : 스키마 정의 (테이블, 관계)
 - `4. EDA.sql` : 탐색적 데이터 분석 (EDA) 쿼리 모음
 - `5~8. HypothesisX.sql` : 가설별 분석 SQL
-- `data_analysis.ipynb` : Python을 통한 데이터 시각화 및 추가 분석
+- `data_analysis.ipynb` : 주피터 노트북 환경에서의 데이터 분석 및 데이터 시각화 추가
 - `data_modeling_analysis.txt` : 데이터 모델링 구조 분석 문서
 
 ## ⚙️ 실행 환경

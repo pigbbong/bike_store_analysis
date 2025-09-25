@@ -59,8 +59,8 @@
 
 
 - **3. 카테고리 집중도**
-  - Heller, Ritchey 등은 단일 카테고리에 100% 의존 → 변동성 큼  
-  - Trek은 Mountain(40%), Road(35%), Electric(18%) 등 다변화 → 안정적 구조
+  - Mountain Bikes(35%)와 Road Bikes(22%)가 매출의 절반 이상을 차지.
+  - 나머지 5개 카테고리(약 43%)는 각각 5~13% 수준.
 ![분석 결과 3](image/3.png)
 
 

@@ -24,7 +24,7 @@
  
 ## 🗂 데이터 모델링 ERD  
 
-![Bike Store ERD](ERD.png)
+![Bike Store ERD](image/ERD.png)
 
 ## 🚀 실행 방법
 1. Oracle DB에 `1. SYS.sql` 실행 → 사용자 및 디렉토리 생성

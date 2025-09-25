@@ -1,3 +1,14 @@
+-- 참고:
+-- SQL Developer의 Import Data 기능을 사용하면
+-- CSV 데이터를 일반 테이블로 더 간단하게 적재할 수 있다.
+-- 하지만 필자는 Oracle의 External Table 기능을 활용하여
+-- 데이터를 불러오는 방식을 직접 구현해 보았다.
+
+-- 목적:
+-- - 대용량 CSV 파일을 외부 테이블로 관리하는 방법 학습
+-- - Oracle Loader 옵션, Access Parameters 사용법 실습
+
+
 ------------------------------------------------------------
 -- BRANDS
 ------------------------------------------------------------
@@ -271,5 +282,6 @@ ORGANIZATION EXTERNAL
   LOCATION ('stores.csv')
 )
 REJECT LIMIT UNLIMITED;
+
 
 SELECT * FROM stores_ext;

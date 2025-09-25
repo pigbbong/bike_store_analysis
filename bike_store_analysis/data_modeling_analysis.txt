@@ -1,0 +1,127 @@
+📑 Bike Store 데이터 모델링 분석
+
+1. Customers
+
+PK: customer_id
+
+- 관계:
+customers (1) —— (M) orders
+ -> 한 고객은 여러 주문을 가질 수 있음.
+ -> 주문은 고객을 반드시 포함할 필요가 없음.
+
+
+2. Stores
+
+PK: store_id
+
+- 관계:
+stores (1) —— (M) staffs
+ -> 한 매장은 여러 직원을 둘 수 있음.
+ -> 직원은 반드시 한 매장에 소속됨 → staffs 쪽이 필수 관계.
+
+stores (1) —— (1) stocks
+ -> 매장은 하나의 재고를 가질 수 있음.
+ -> stocks는 반드시 매장을 가져야 함.
+
+⚠️ 하지만 이 모델에서는 Stores – Stocks 관계를 1:1로 표시했으나, 실제 비즈니스 규칙상으로는 1:M 관계로 보는 것이 더 타당하다고 봄.
+→ 매장은 여러 상품(Product)에 대해 각각 재고를 가질 수 있으므로, 현실적으로는 “한 매장(Store)은 여러 재고(Stocks)를 가진다(1:M)” 구조가 맞다고 봄.
+
+
+3. Staffs
+
+PK: staff_id
+
+- 관계:
+staffs (1) —— (M) orders
+ -> 직원은 여러 주문을 처리할 수 있음.
+ -> 주문은 반드시 담당 직원이 필요함.
+
+자기참조: manager_id → staff_id
+ -> 직원은 0 또는 1명의 매니저를 가질 수 있음.
+ -> 매니저는 여러 직원을 관리할 수 있음.
+
+
+4. Orders
+
+PK: order_id
+
+- 관계:
+ orders (1) —— (1) order_items
+ -> 주문은 하나의 주문 상세(order_items)를 가질 수 있음.
+ -> 주문 상세는 반드시 한 주문에 속해야 함 → 식별 관계.
+
+⚠️ 다만 일반적으로는 주문(Order) 하나에 여러 주문 상세(Order_Items)가 존재할 수 있으므로, 두 테이블만의 관계는 1:M 관계로 보는 편이 더 현실적이라 봄.
+
+orders (M)——(1) customers, orders (M)——(1) staffs, orders (M)——(1) stores는 모두 비식별 관계.
+
+
+5. Order_Items
+
+PK: (order_id, item_id) (복합 PK)
+
+- 관계:
+order_items (M) —— (1) products
+ -> 주문 상세는 반드시 특정 상품을 참조해야 함.
+ -> 한 상품은 여러 주문 상세에 포함될 수 있음.
+
+order_items (1) —— (1) orders
+ -> 주문 상세는 반드시 특정 주문에 속해야 함.
+
+
+6. Products
+
+PK: product_id
+
+- 관계:
+products (M) —— (1) brands
+ -> 각 상품은 특정 브랜드에 속함.
+ -> 한 브랜드는 여러 상품을 가질 수 있음.
+
+products (M) —— (1) categories
+ -> 각 상품은 특정 카테고리에 속함.
+ -> 한 카테고리는 여러 상품을 포함할 수 있음.
+
+products (1) —— (1) stocks
+ -> 상품은 하나의 재고와 연결될 수 있음
+ -> 재고는 반드시 특정 상품이 포함되야함.
+
+⚠️ 하지만 현실적으로는 한 상품(Product)이 여러 매장(Store)에 걸쳐 각각의 재고(Stocks)를 가질 수 있으므로, 다른 테이블을 배제하고 두 테이블만 놓고 봤을 땐 1:M 관계로 보는 것이 적절하다고 봄.
+
+
+7. Brands
+
+PK: brand_id
+
+- 관계:
+
+ brands (1) —— (M) products
+ -> 한 브랜드는 여러 상품을 가질 수 있음.
+
+
+8. Categories
+
+PK: category_id
+
+- 관계:
+categories (1) —— (M) products
+ -> 한 카테고리는 여러 상품을 포함할 수 있음.
+
+
+9. Stocks
+
+PK: (store_id, product_id) (복합 PK)
+
+- 관계:
+stocks (1) —— (1) stores, stocks (1) —— (1) products
+ -> 특정 매장–상품 조합은 재고 정보가 한 건만 존재.
+
+⚠️ 하지만 이 모델에서는 Stocks – Stores, Stocks – Products 관계를 1:1로 표시했으나, 각 테이블 기준에서 M:1 관계로 보는 것이 더 타당함.
+	→ 한 매장(Store)은 여러 상품(Product)에 대해 여러 재고(Stocks)를 가질 수 있으므로 Stores ↔ Stocks는 1:M 관계, Stocks 입장에서는 M:1 관계.
+ 	→ 한 매장(Store)은 여러 상품(Product)에 대해 각각 재고를 가질 수 있고, 한 상품(Product)도 여러 매장(Store)에 걸쳐 재고를 가질 수 있음.
+	→ 따라서 Stocks는 Stores와 Products 간의 다대다(M:N) 관계를 해소하기 위한 교차 테이블 역할을 하며, (store_id, product_id) 복합키로 유일한 레코드만 존재한다고 해석하는 쪽이 타당함.
+
+
+
+
+
+

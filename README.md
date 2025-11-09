@@ -8,10 +8,7 @@
 ## 실행 환경
 - Oracle Database 21c XE
 - SQL Developer
-- Python 3.10.7  
-  - pandas==2.2.2
-  - matplotlib==3.9.1.post1
-  - oracledb==3.3.0
+- Python 3.10.7 
  
 ## 데이터 모델링 ERD  
 

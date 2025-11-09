@@ -5,7 +5,7 @@
 - SQL 스크립트와 Python(Jupyter Notebook)을 사용하여 EDA, 가설 검증, 시각화를 수행
 - GitHub 저장소에 데이터 처리 단계별 SQL과 분석 노트북을 정리
 
-## ⚙️ 실행 환경
+## 실행 환경
 - Oracle Database 21c XE
 - SQL Developer
 - Python 3.10.7  

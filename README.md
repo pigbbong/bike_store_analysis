@@ -18,7 +18,7 @@
 ![Bike Store ERD](image/ERD.png)
 
 
-## 🗂 데이터 출처
+## 데이터 출처
 데이터는 Kaggle의 Bike Store Sample Database에서 가져왔습니다.
 - https://www.kaggle.com/datasets/dillonmyrick/bike-store-sample-database/data
 
